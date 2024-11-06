@@ -3,13 +3,13 @@
 Este projeto consiste em duas APIs construídas com Spring Boot: **User** e **Notify**. A API **User** gerencia o registro, autenticação e atualização de senha de usuários, armazenando os dados em um banco de dados MySQL e garantindo segurança com autenticação JWT. A comunicação entre **User** e **notify** é feita via RabbitMQ, permitindo o envio de mensagens de criação e atualização de usuários. Ambos os serviços, bem como MySQL e RabbitMQ, são executados em contêineres Docker, facilitando a configuração e execução do ambiente.
 
 ## Índice
-- [Tecnologias Utilizadas](#Tecnologias Utilizadas)
-- [Estrutura do Projeto](#estrutura-do-projeto)
-- [Endpoints da API](#Endpoints da API)
-- [Guia para Execução do Docker Compose](#Guia para Execução do Docker Compose)
+1. Tecnologias Utilizadas
+2. Estrutura do Projeto
+3. Endpoints da API
+4. Guia para Execução do Docker Compose
 
 
-## Tecnologias Utilizadas
+## 1 Tecnologias Utilizadas
 
 - Spring Boot
 - Docker e Docker Compose
@@ -19,7 +19,7 @@ Este projeto consiste em duas APIs construídas com Spring Boot: **User** e **No
 - Postman (para testes de API)
 
 
-## Estrutura do Projeto
+## 2 Estrutura do Projeto
 
 - ***src/main/java/com.wallace.msusers.api*** =  Contém a arquitetura de camada da aplicação, responsáveis por gerenciar as requisições HTTP.
 
@@ -38,7 +38,7 @@ Este projeto consiste em duas APIs construídas com Spring Boot: **User** e **No
 - ***src/main/java/com.wallace.msusers.infra.security*** = Contém as classes relacionadas à uso de JWT para proteger rotas da API.
 
 
-## Endpoints da API
+## 3 Endpoints da API
 
 ### Registrar Usuário
 
@@ -74,7 +74,7 @@ Este projeto consiste em duas APIs construídas com Spring Boot: **User** e **No
 ![register](../desafio-3F/img/update.png)
 
 
-## Guia para Execução do Docker Compose
+## 4 Guia para Execução do Docker Compose
 
 1. Clone o repositório do projeto em sua máquina:
    ```bash
