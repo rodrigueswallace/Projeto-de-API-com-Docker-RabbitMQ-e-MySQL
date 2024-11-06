@@ -1,0 +1,71 @@
+version: '3.8'  # Specify the version of Docker Compose
+
+services:
+  user:
+    image: msusers
+    build:
+      context: ./msusers
+      dockerfile: Dockerfile
+    container_name: msusers
+    ports:
+      - "8081:8081" # Ajuste a porta conforme necessário
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/api_with_spring?createDatabaseIfNotExist=true&serverTimezone=UTC&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_RABBITMQ_HOST=rabbitmq
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      mysqldb:
+        condition: service_healthy
+
+  notify:
+    image: notify
+    build:
+      context: ./msnotify
+      dockerfile: Dockerfile
+    container_name: notify
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_RABBITMQ_HOST=rabbitmq
+    depends_on:
+      - user
+
+
+  mysqldb:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: api_with_spring
+    ports:
+      - "3307:3306"
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot" ]  # Comando para verificar se o MySQL está pronto
+      interval: 30s  # Intervalo entre as verificações
+      timeout: 5s    # Tempo de espera para uma resposta
+      retries: 5     # Número de tentativas antes de considerar o serviço não saudável
+
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"     # Porta padrão do RabbitMQ
+      - "15672:15672"
+    healthcheck:
+      test: [ "CMD", "rabbitmq-diagnostics", "ping" ]  # Comando para verificar se o RabbitMQ está pronto
+      interval: 30s  # Intervalo entre as verificações
+      timeout: 5s    # Tempo de espera para uma resposta
+      retries: 5     # Número de tentativas antes de considerar o serviço não saudável
+
+
+
+
+
+
+
+
+
+
