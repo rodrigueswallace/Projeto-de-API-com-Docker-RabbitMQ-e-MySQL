@@ -1,4 +1,4 @@
-# Projeto de API com Docker, RabbitMQ e MySQL
+# API Project with Docker, RabbitMQ, and MySQL
 
 This project consists of two APIs built with Spring Boot: **User** and **Notify.** The User API handles user registration, authentication, and password updates, storing data in a MySQL database and ensuring security with JWT authentication. Communication between User and Notify is facilitated via RabbitMQ, allowing the creation and update of user messages. All services, along with MySQL and RabbitMQ, run in Docker containers, simplifying setup and environment execution.
 ## Índice
