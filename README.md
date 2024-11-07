@@ -1,108 +1,108 @@
 # Projeto de API com Docker, RabbitMQ e MySQL
 
-Este projeto consiste em duas APIs construídas com Spring Boot: **User** e **Notify**. A API **User** gerencia o registro, autenticação e atualização de senha de usuários, armazenando os dados em um banco de dados MySQL e garantindo segurança com autenticação JWT. A comunicação entre **User** e **notify** é feita via RabbitMQ, permitindo o envio de mensagens de criação e atualização de usuários. Ambos os serviços, bem como MySQL e RabbitMQ, são executados em contêineres Docker, facilitando a configuração e execução do ambiente.
-
+This project consists of two APIs built with Spring Boot: **User** and **Notify.** The User API handles user registration, authentication, and password updates, storing data in a MySQL database and ensuring security with JWT authentication. Communication between User and Notify is facilitated via RabbitMQ, allowing the creation and update of user messages. All services, along with MySQL and RabbitMQ, run in Docker containers, simplifying setup and environment execution.
 ## Índice
-1. Tecnologias Utilizadas
-2. Estrutura do Projeto
-3. Endpoints da API
-4. Guia para Execução do Docker Compose
+1. Technologies Used
+2. Project Structure
+3. API Endpoints
+4. Docker Compose Execution Guide
 
 
-## 1 Tecnologias Utilizadas
+## 1 Technologies Used
 
 - Spring Boot
 - Docker e Docker Compose
-- RabbitMQ (mensageria)
-- MySQL (mensageria)
-- JWT para autenticação
-- Postman (para testes de API)
+- RabbitMQ (messaging)
+- MySQL (messaging)
+- JWT for authentication
+- Postman (for API testing)
 
 
-## 2 Estrutura do Projeto
+## 2 Project Structure
 
-- ***src/main/java/com.wallace.msusers.api*** =  Contém a arquitetura de camada da aplicação, responsáveis por gerenciar as requisições HTTP.
-
-
-- ***src/main/java/com.wallace.msusers.domain.entities*** = Contém as entidades de domínio, que são representações dos objetos principais do sistema.
-- 
-- ***src/main/java/com.wallace.msusers.dto*** = Contém os objetos de transferência de dados (DTOs)
+- ***src/main/java/com.wallace.msusers.api*** =  Contains the application layer architecture responsible for managing HTTP requests.
 
 
-- ***src/main/java/com.wallace.msusers.exception*** = Contém classes relacionadas ao tratamento de exceções personalizadas.
+- ***src/main/java/com.wallace.msusers.domain.entities*** = Contains the domain entities representing the primary objects of the system.
 
 
-- ***src/main/java/com.wallace.msusers.infra.rabbitmq*** = Contém a configuração e a lógica de integração com o RabbitMQ.
+- ***src/main/java/com.wallace.msusers.dto*** =  Contains Data Transfer Objects (DTOs).
 
 
-- ***src/main/java/com.wallace.msusers.infra.security*** = Contém as classes relacionadas à uso de JWT para proteger rotas da API.
+- ***src/main/java/com.wallace.msusers.exception*** = Contains classes related to custom exception handling.
 
 
-## 3 Endpoints da API
+- ***src/main/java/com.wallace.msusers.infra.rabbitmq*** = Contains the configuration and integration logic with RabbitMQ.
 
-### Registrar Usuário
+
+- ***src/main/java/com.wallace.msusers.infra.security*** = Contains classes related to JWT usage for securing API routes.
+
+
+## 3 API Endpoints
+
+### Register User
 
 **EndPoint:** POST /api/users/register
 
-**Descrição:** Registra um novo usuário
+**Description:** Registers a new user
 
-![register](../desafio-3F/img/register.png)
+![register](./img/register.png)
 
-### Pegar Token
+### Get Token
 
 **EndPoint:** POST /api/users/auth
 
-**Descrição** pegar token para atualizar senha
+**Description** Retrieve token for password update
 
-![register](../desafio-3F/img/token.png)
-
-
-### Autenticar e Atualizar senha
+![register](./img/token.png)
 
 
-**EndPoint:** POST /api/users/update-password
-
-**Descrição** autenticar token
-
-![register](../desafio-3F/img/tokenVali.png)
+### Authenticate and Update Password
 
 
 **EndPoint:** POST /api/users/update-password
 
-**Descrição** atualizar senha
+**Description**  Authenticate token
 
-![register](../desafio-3F/img/update.png)
+![register](./img/tokenVali.png)
 
 
-## 4 Guia para Execução do Docker Compose
+**EndPoint:** POST /api/users/update-password
 
-1. Clone o repositório do projeto em sua máquina:
+**Description** Update password
+
+![register](./img/update.png)
+
+
+## 4 Docker Compose Execution Guide
+
+1. Clone the project repository to your machine:
    ```bash
    git clone https://github.com/rodrigueswallace/Projeto-de-API-com-Docker-RabbitMQ-e-MySQL.git
     ```
    
-2. Verificando o Docker e docker compose:
+2. Check Docker and Docker Compose versions:
     ```bash
     docker --version
     docker compose --version
     ```
-3. Execute o comando:
+3. Run the command:
     ```bash
     docker-compose up --build
     ```
 
-Esse comando irá:
+This command will:
 
-- Criar e iniciar os contêineres para MySQL, RabbitMQ e a aplicação.
-- Configurar a rede para que os serviços possam se comunicar entre si.
+- Create and start containers for MySQL, RabbitMQ, and the application.
+- Set up the network so the services can communicate with each other.
 
-4. Verifique se os serviços estão em execução:
+4. Verify if the services are running:
 
-- MySQL: Porta 3307
-- RabbitMQ: Porta 5672
-- API: Porta 8081
+- MySQL: Port 3307
+- RabbitMQ: Port 5672
+- API: Port 8081
 
-## Considerações Finais
+## Final Considerations
 
-- **Ambiente de Teste:** Utilize o Postman para fazer chamadas aos endpoints conforme descrito.
+- **Testing Environment:** Use Postman to make requests to the endpoints as described.
 
