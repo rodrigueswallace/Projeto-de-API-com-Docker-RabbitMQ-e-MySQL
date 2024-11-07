@@ -74,6 +74,15 @@ This project consists of two APIs built with Spring Boot: **User** and **Notify.
 ![register](./img/update.png)
 
 
+### Notify Service Status
+
+Here is an example of the Notify service status displayed in the terminal:
+
+This section, along with the image, visually shows the Notify service running status in the terminal.
+
+![register](./img/notify.png)
+
+
 ## 4 Docker Compose Execution Guide
 
 1. Clone the project repository to your machine:
